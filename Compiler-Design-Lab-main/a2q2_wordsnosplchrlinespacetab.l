@@ -1,14 +1,3 @@
-/*
-Q2.Given a paragraph in English, write a lex program which count the number of words, number of special characters, number of lines, spaces and tabs in the paragraph.
-
-
-Name:Karn Kumar Singh
-Roll No:1906181
-course code:CSL5404
-
-
-*/
-
 %{
 #include<stdio.h>
 int lines=0, words=0,special=0,space=0,tab=0;

@@ -1,13 +1,3 @@
-/*
-Q3. Write a Lex program to check weather given number is odd or even and if it is odd also check whether it is prime or not.
-
-Name:Karn Kumar Singh
-Roll No:1906181
-course code:CSL5404
-
-
-*/
-
 %{
     #include<stdio.h>
      int i;

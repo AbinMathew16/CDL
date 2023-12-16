@@ -1,16 +1,3 @@
-/*
-Q1. Write a LEX program to count the number of vowels and consonants in a given string.
-
-
-Name:Karn Kumar Singh
-Roll No:1906181
-course code:CSL5404
-
-
-*/
-
-
-
 %{
     #include<stdio.h>
     int vowel=0,consonent =0;

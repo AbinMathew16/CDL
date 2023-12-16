@@ -1,16 +1,3 @@
-/*
-Q1. Given an input sentence, write a Lex Program to count the number of words whose length is greater than 2.
-
-
-Name:Karn Kumar Singh
-Roll No:1906181
-course code:CSL5404
-
-
-*/
-
-
-
 %{
   #include<stdio.h>
   #include<string.h>
