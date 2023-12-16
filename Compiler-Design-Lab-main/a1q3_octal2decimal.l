@@ -1,16 +1,3 @@
-/*
-Q3. Write a LEX program to convert an octal number to decimal number.
-
-
-Name:Karn Kumar Singh
-Roll No:1906181
-course code:CSL5404
-
-
-*/
-
-
-
 %{
     #include <stdlib.h>
     #include <stdio.h>
