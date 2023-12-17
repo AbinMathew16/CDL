@@ -1,51 +1,44 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
-
-#define MAX_STACK_SIZE 100
-
-char stack[MAX_STACK_SIZE];
-int top = -1;
-
-void push(char c) {
-    if (top < MAX_STACK_SIZE - 1) {
-        stack[++top] = c;
-    } else {
-        fprintf(stderr, "Error: Stack overflow.\n");
-        exit(EXIT_FAILURE);
-    }
-}
-
-char pop() {
-    if (top >= 0) {
-        return stack[top--];
-    } else {
-        fprintf(stderr, "Error: Stack underflow.\n");
-        exit(EXIT_FAILURE);
-    }
-}
-
+#include <string.h>
 %}
 
+%option noyywrap
+
 %%
-[()] { push(yytext[0]); }
-[{}] { push(yytext[0]); }
-[\[\]] { push(yytext[0]); }
-\n {
-    while (top >= 0) {
-        char c = pop();
-        if (c == '(' || c == '{' || c == '[') {
-            printf("Syntax error: Unbalanced symbols.\n");
-            return 0;
+[0-3]?[0-9][/][0-1]?[0-9][/][0-9]{4} {
+    char dateCopy[20];  // Assuming a reasonable maximum length for the date
+    strcpy(dateCopy, yytext);
+
+    int day = atoi(strtok(dateCopy, "/"));
+    int month = atoi(strtok(NULL, "/"));
+    int year = atoi(strtok(NULL, "/"));
+
+    if (month < 1 || month > 12 || day < 1 || day > 31) {
+        printf("%s is not a valid date.\n", yytext);
+    } else if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) {
+        printf("%s is not a valid date.\n", yytext);
+    } else if (month == 2) {
+        if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+            if (day > 29) {
+                printf("%s is not a valid date.\n", yytext);
+            }
+        } else {
+            if (day > 28) {
+                printf("%s is not a valid date.\n", yytext);
+            }
         }
     }
-    printf("Syntax is correct.\n");
+    else {
+        printf("%s is a valid date.\n", yytext);
+    }
 }
-. { continue; }
+.|\n { /* Ignore other characters */ }
+
 %%
-yywrap(){return 1;}
+
 int main() {
-    printf("Enter your code:\n");
     yylex();
     return 0;
 }

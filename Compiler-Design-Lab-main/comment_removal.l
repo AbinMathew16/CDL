@@ -1,9 +1,12 @@
 %{
 #include<stdio.h>
 int c_count=0;
+%}
 %option noyywrap
+%%
 "/*"[^"*/"]*"*/" c_count++;
-"//". c_count++;
+"//".* c_count++;
+%%
 int main(int argc, char **argv)
 {
 FILE *f1,*f2;
@@ -25,4 +28,6 @@ exit(1);
 yyout=f2;
 yylex();
 printf("number of comment lines%d\n",c_count);
+}
 return 0;
+}
