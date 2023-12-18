@@ -2,7 +2,7 @@
     #include<stdio.h>
      int i;
 %}
-  
+
 %%
   
 [0-9]+     {i=atoi(yytext);
